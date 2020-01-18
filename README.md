@@ -1,2 +1,2 @@
-# learnvis
-Learning visualization. Potential: Vega Lite, D3. 
+# learnd3
+Learning D3. 
