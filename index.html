@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <meta charset="utf-8">
 <head>
     <title>Testing D3</title>
@@ -6,6 +7,17 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
     <script>
-        d3.select('body').append('span').text('hello world!')
+        d3.select('body')
+            .append('span')
+            .text('hello world!')
+            .style('color', 'whitesmoke')
+
+        d3.select('body')
+            .style({'background-color': '#262626', 'height': '100%'})
+
+        d3.csv('films.csv', (dat) => {
+           console.log(dat) 
+        })
     </script>
 </body>
+</html>
