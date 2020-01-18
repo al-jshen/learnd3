@@ -3,42 +3,13 @@
 <meta charset="utf-8">
 <head>
     <title>Testing D3</title>
+    <link rel='stylesheet' href='styles.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
-    <script>
-        d3.select('body')
-            .append('span')
-            .text('hello world!')
-            .style('color', 'whitesmoke')
-        d3.select('html')
-            .style('border', '1px solid yellow')
-            .style('padding', '0')
-        d3.select('body')
-            .style('background-color', '#262626')
-            .style('height', '100%')
-            .style('width', '100%')
-            .style('border', '1px solid green')
-            .style('margin', '0')
-        d3.csv('films.csv', (dat) => {
-            console.log(dat)
-        })
-
-    </script>
-
-    <svg width='100%' height='500'>
-        <g transform="scale(1.5)">
-            <circle cx='300' cy='200' r='100' fill='white'></circle>
-            <rect width='30', height='50', x='50', y='50', fill='red'></rect>
-            <g transform="translate(100, 50)" stroke="red" stroke-width="2">
-                <circle cx='300' cy='200' r='100' fill='white'></circle>
-                <rect width='30', height='50', x='50', y='50', fill='red'></rect>
-            </g>
-            <g stroke="blue" stroke-width="4" >
-                <line x1='50' y1='20' x2='400' y2='200' />
-                <path d='M400 200 L200 180 L300 300 L600 100' fill='none' stroke-linejoin='round'/>
-            </g>
-        </g>
-    </svg>
+    testing
+    <svg width='500' height='500'></svg>
+    <script src='bundle.js'></script>
+    <script>console.log(d3)</script>
 </body>
 </html>
