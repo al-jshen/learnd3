@@ -83,7 +83,7 @@
             .style('font-family', 'Garamond');
     };
 
-    d3.csv('data.csv')
+    d3.csv('./data/data.csv')
         .then((data) => {
             data.forEach((d) => {
                 d.value = +d.value;
