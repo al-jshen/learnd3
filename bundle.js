@@ -45,7 +45,8 @@ const colScale = d3.scaleSequential()
 const lineGen = d3.line()
     .x((d, i) => xScale(i))
     .y((d) => yScale(d.val)*height)
-    .curve(d3.curveCatmullRom.alpha(0.3));
+    .curve(d3.curveCatmullRom.alpha(0.3))
+    .defined((d) => d !== null);
 
 console.log(lineGen(dat));
 
