@@ -2,23 +2,23 @@
 var scores = [
   {
     "name": "Andy",
-    "score": 25
+    "score": 80
   },
   {
     "name": "Beth",
-    "score": 39
+    "score": 57
   },
   {
     "name": "Craig",
-    "score": 42
+    "score": 67
   },
   {
-    "name": "Diane",
-    "score": 35
+    "name": "Derek",
+    "score": 25
   },
   {
     "name": "Evelyn",
-    "score": 48
+    "score": 37
   }
 ]
 
@@ -33,13 +33,17 @@ svg.selectAll('g')
     .append('g')
         .attr('class', 'item')
         .attr('transform', (d, i) => {
-            return `translate(50, ${i*50+20})`
+            return `translate(50, ${i*100+20})`
         })
+
+const cols = d3.scaleSequential(d3.interpolateYlOrBr);
 
 svg.selectAll('.item')
     .append('rect')
-        .attr('width', 20)
-        .attr('height', 30)
+        .attr('width', (d) => d.score)
+        .attr('height', (d) => d.score)
+        .attr('fill', (d) => cols(d.score/100))
+
 
 svg.selectAll('.item')
     .append('text')
@@ -48,6 +52,6 @@ svg.selectAll('.item')
         })
         .style('fill', 'black')
         .attr('font-size', 10)
-        .attr('transform', 'translate(50, 0)')
+    .attr('transform', (d, i) => `translate(100, ${d.score/2})`)
     
 
