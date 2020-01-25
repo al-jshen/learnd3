@@ -1,29 +1,29 @@
 'use strict';
 
-var scores = [
+const dat = [
   {
     "name": "Andy",
-    "score": 80
+    "val": 80
   },
   {
     "name": "Beth",
-    "score": 57
+    "val": 57
   },
   {
     "name": "Craig",
-    "score": 67
+    "val": 67
   },
   {
     "name": "Derek",
-    "score": 25
+    "val": 25
   },
   {
     "name": "Evelyn",
-    "score": 37
+    "val": 37
   },
   {
       'name': 'Felix',
-      'score': 77}
+      'val': 77}
 ];
 
 const svg = d3.select('svg');
@@ -31,37 +31,26 @@ const height = +svg.attr('height');
 const width = +svg.attr('width');
 const cols = d3.scaleSequential(d3.interpolateYlOrBr);
 
-//const xScale = d3.scale.ordinal()
-//    .domain([d3.range(data.length)]).nice()
-//
-//const yScale = d3.scale.linear()
-//    .domain([0, d3.max(data, d => d.score)]).nice()
+const xScale = d3.scaleLinear()
+    .domain([0, dat.length]).nice()
+    .range([0, width]);
+
+const yScale = d3.scaleLinear()
+    .domain([0, d3.max(dat, d => d.val)]).nice();
 
 const colScale = d3.scaleSequential()
     .domain([0, 100]).nice()
     .interpolator(d3.interpolateRainbow);
 
-const g = svg.selectAll('g')
-    .data(scores)
-    .enter()
-    .append('g')
-        .attr('class', 'item')
-        .attr('transform', (d, i) => `translate(50, ${i*100+20})`);
+const lineGen = d3.line()
+    .x((d, i) => xScale(i))
+    .y((d) => yScale(d.val)*height)
+    .curve(d3.curveCatmullRom.alpha(0.3));
 
-g.append('rect')
-    .attr('width', (d) => d.score)
-    .attr('height', (d) => d.score)
-    .attr('fill', (d) => colScale(d.score));
+console.log(lineGen(dat));
 
-
-g.append('text')
-    .text((d) => d.name)
-    .style('fill', 'black')
-    .attr('font-size', 20)
-    .attr('transform', (d) => `translate(100, ${d.score/2})`);
-    
-// svg.selectAll('.item')
-//     .sort((a, b) => {
-//         console.log(a.score - b.score)
-//         return b.score - a.score
-//     })
+svg.append('path')
+    .attr('d', lineGen(dat))
+    .attr('stroke', 'blue')
+    .attr('stroke-width', 2)
+    .attr('fill', 'none');
